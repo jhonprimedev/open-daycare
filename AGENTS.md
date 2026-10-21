@@ -38,3 +38,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Playwright: screenshots y cualquier archivo relacionado con Playwright van en la carpeta `.playwright-mcp/` (ya está en `.gitignore`).
 
 - Context7: usar este MCP para traer la documentación actualizada del framework (obligatorio para Next.js — ver el bloque de reglas de arriba).
+
+## Reglas de codigo
+- Usar codigo limpio, nombres, funciones, variables, etc en ingles.
