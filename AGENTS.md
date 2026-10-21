@@ -33,6 +33,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Features are spec-driven via the `/spec` and `/spec-impl` skills (`.agents/skills/`, tracked in `skills-lock.json`).
 - Specs live at `specs/NN-slug.md`. `/spec-impl` only proceeds when the spec state means "Approved" (e.g. `Aprobado`), then creates/switches to branch `spec-NN-slug` (controllable via `AutoCreateBranch` in `specs/.spec-config.yml`, default `true`).
 
+## Agents
+
+- `spec-verifier` (`.opencode/agent/spec-verifier.md`): verifies the "Criterios de aceptación" of a spec against the real implementation. Reads the spec, runs `npm run lint` and `npm run build`, drives Playwright for visual/interaction checks, corrects small deviations, and marks checkboxes only after proving them in-session. Use it when asked to verify, validate, or "marcar los checks" of a spec.
+
 ## MCPs
 
 - Playwright: screenshots y cualquier archivo relacionado con Playwright van en la carpeta `.playwright-mcp/` (ya está en `.gitignore`).
