@@ -1,6 +1,6 @@
 # SPEC 01 — Home: feed de la guardería
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** ninguna (primera spec del repo)
 > **Fecha:** 2026-10-20
 > **Objetivo:** Implementar el mockup `references/pantallas/feed.dc.html` como home `/`, sin autenticación ni base de datos, con datos mock y estilo idéntico al proporcionado (desktop y móvil con drawer).
@@ -71,15 +71,15 @@ Convenciones:
 
 ## Criterios de aceptación
 
-- [ ] `/` muestra header de saludo, tarjeta «Compartí un momento…», divisor «PUBLICADO HOY» y los 3 posts con los textos exactos del mockup.
-- [ ] El sidebar muestra logo, «Nueva publicación», nav con Feed activo y la tarjeta «Caro Giménez · Maestra · Soles».
-- [ ] Ningún clic desde el home lleva a una ruta inexistente (cero 404).
-- [ ] Fredoka y Nunita cargan vía `next/font` (sin `<link>` a fonts.googleapis.com en el HTML servido).
-- [ ] A 1280px la comparación visual contra `references/screenshots/feed.png` coincide en estructura, colores y tipografías.
-- [ ] A 375px el sidebar está oculto, la hamburguesa es visible y el drawer abre y cierra.
-- [ ] Corazones, comentarios y «Editar» no cambian al clic.
-- [ ] `npm run lint` no reporta problemas fuera de `references/`.
-- [ ] `npm run build` pasa sin errores de TypeScript.
+- [x] `/` muestra header de saludo, tarjeta «Compartí un momento…», divisor «PUBLICADO HOY» y los 3 posts con los textos exactos del mockup.
+- [x] El sidebar muestra logo, «Nueva publicación», nav con Feed activo y la tarjeta «Caro Giménez · Maestra · Soles».
+- [x] Ningún clic desde el home lleva a una ruta inexistente (cero 404).
+- [x] Fredoka y Nunito cargan vía `next/font` (sin `<link>` a fonts.googleapis.com en el HTML servido).
+- [x] A 1280px la comparación visual contra `references/screenshots/feed.png` coincide en estructura, colores y tipografías.
+- [x] A 375px el sidebar está oculto, la hamburguesa es visible y el drawer abre y cierra.
+- [x] Corazones, comentarios y «Editar» no cambian al clic.
+- [x] `npm run lint` no reporta problemas fuera de `references/`.
+- [x] `npm run build` pasa sin errores de TypeScript.
 
 ## Decisiones
 
