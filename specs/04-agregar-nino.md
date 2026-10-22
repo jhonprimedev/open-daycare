@@ -1,6 +1,6 @@
 # SPEC 04 — Agregar niño (modal)
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 02
 > **Fecha:** 2026-10-22
 > **Objetivo:** Implementar el mockup `agregar-nino.dc.html` como un modal/dialog en `/kids` con validación client-side de campos obligatorios (nombre, fecha de nacimiento, sala) y agregado al mock en memoria.
