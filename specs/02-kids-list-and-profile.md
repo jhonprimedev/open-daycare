@@ -1,6 +1,6 @@
 # SPEC 02 — Niños: lista y perfil
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-10-21
 > **Objetivo:** Implementar los mockups `ninos.dc.html` y `perfil-nino.dc.html` como las rutas `/kids` y `/kids/[id]` con datos mock, buscador con filtro client-side y estilo idéntico (desktop y móvil).
@@ -72,14 +72,14 @@ Convenciones:
 
 ## Criterios de aceptación
 
-- [ ] `/kids` muestra «GESTIÓN/Niños», botón «Agregar niño», buscador, divisor «SALA SOLES · 8 niños» y las 8 tarjetas con los textos exactos del mockup.
-- [ ] Cada tarjeta navega al perfil de su niño y `/kids/mateo` reproduce `perfil-nino.dc.html` (alerta con la nota exacta, tabla de 3 filas, Lucía ACTIVA, Diego PENDIENTE, «Vincular otro padre»).
-- [ ] Un id inexistente (p. ej. `/kids/zz`) muestra la página 404 de Next.
-- [ ] El buscador filtra por nombre case-insensitive y sin acentos («sofia» encuentra a Sofía) y una búsqueda sin coincidencias deja la grilla vacía.
-- [ ] El sidebar navega de verdad a Feed y Niños, marca el ítem activo según la ruta en `/`, `/kids` y `/kids/*`, y Avisos/Mi cuenta siguen inertes sin 404.
-- [ ] «Agregar niño», «Editar», «Resumen del día» y «Vincular otro padre» no navegan.
-- [ ] A 375px la lista muestra 1 columna, el perfil se apila y el drawer funciona igual que en SPEC 01.
-- [ ] `npm run lint` no reporta problemas fuera de `references/` y `npm run build` pasa sin errores de TypeScript.
+- [x] `/kids` muestra «GESTIÓN/Niños», botón «Agregar niño», buscador, divisor «SALA SOLES · 8 niños» y las 8 tarjetas con los textos exactos del mockup.
+- [x] Cada tarjeta navega al perfil de su niño y `/kids/mateo` reproduce `perfil-nino.dc.html` (alerta con la nota exacta, tabla de 3 filas, Lucía ACTIVA, Diego PENDIENTE, «Vincular otro padre»).
+- [x] Un id inexistente (p. ej. `/kids/zz`) muestra la página 404 de Next.
+- [x] El buscador filtra por nombre case-insensitive y sin acentos («sofia» encuentra a Sofía) y una búsqueda sin coincidencias deja la grilla vacía.
+- [x] El sidebar navega de verdad a Feed y Niños, marca el ítem activo según la ruta en `/`, `/kids` y `/kids/*`, y Avisos/Mi cuenta siguen inertes sin 404.
+- [x] «Agregar niño», «Editar», «Resumen del día» y «Vincular otro padre» no navegan.
+- [x] A 375px la lista muestra 1 columna, el perfil se apila y el drawer funciona igual que en SPEC 01.
+- [x] `npm run lint` no reporta problemas fuera de `references/` y `npm run build` pasa sin errores de TypeScript.
 
 ## Decisiones
 
