@@ -1,14 +1,21 @@
 "use client";
 
 import { useState, type MouseEvent, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { currentUser, room } from "@/lib/mock/feed";
 
-type NavItem = { label: string; icon: ReactNode; active?: boolean };
+type NavItem = {
+  label: string;
+  href: string;
+  inert?: boolean;
+  icon: ReactNode;
+};
 
 const navItems: NavItem[] = [
   {
     label: "Feed",
-    active: true,
+    href: "/",
     icon: (
       <svg
         width="19"
@@ -27,6 +34,7 @@ const navItems: NavItem[] = [
   },
   {
     label: "Niños",
+    href: "/kids",
     icon: (
       <svg
         width="19"
@@ -47,6 +55,8 @@ const navItems: NavItem[] = [
   },
   {
     label: "Avisos",
+    href: "#",
+    inert: true,
     icon: (
       <svg
         width="19"
@@ -65,6 +75,8 @@ const navItems: NavItem[] = [
   },
   {
     label: "Mi cuenta",
+    href: "#",
+    inert: true,
     icon: (
       <svg
         width="19"
@@ -84,7 +96,14 @@ const navItems: NavItem[] = [
   },
 ];
 
+const isActiveRoute = (pathname: string, href: string): boolean => {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+};
+
 function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
+  const pathname = usePathname();
+
   const handleInertClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     onNavigate?.();
@@ -143,21 +162,40 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
       </a>
 
       <nav className="flex flex-1 flex-col gap-1">
-        {navItems.map((item) => (
-          <a
-            key={item.label}
-            href="#"
-            onClick={handleInertClick}
-            className={`flex cursor-pointer items-center gap-3 rounded-xl px-3 py-[11px] text-[14.5px] ${
-              item.active
-                ? "bg-[#FBE3D8] font-extrabold text-[#D9583C]"
-                : "font-semibold text-[#6E6359]"
-            }`}
-          >
-            {item.icon}
-            {item.label}
-          </a>
-        ))}
+        {navItems.map((item) => {
+          const active = !item.inert && isActiveRoute(pathname, item.href);
+          const classes = `flex items-center gap-3 rounded-xl px-3 py-[11px] text-[14.5px] ${
+            active
+              ? "bg-[#FBE3D8] font-extrabold text-[#D9583C]"
+              : "font-semibold text-[#6E6359]"
+          }`;
+
+          if (item.inert) {
+            return (
+              <a
+                key={item.label}
+                href="#"
+                onClick={handleInertClick}
+                className={`${classes} cursor-pointer`}
+              >
+                {item.icon}
+                {item.label}
+              </a>
+            );
+          }
+
+          return (
+            <Link
+              key={item.label}
+              href={item.href}
+              onClick={onNavigate}
+              className={classes}
+            >
+              {item.icon}
+              {item.label}
+            </Link>
+          );
+        })}
       </nav>
 
       <div className="mt-[10px] border-t border-[#ECE0D0] pt-[14px]">
