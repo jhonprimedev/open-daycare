@@ -1,24 +1,52 @@
 "use client";
 
 import { useState, useMemo, type MouseEvent } from "react";
-import Link from "next/link";
-import { kids } from "@/lib/mock/kids";
+import { kids as initialKids, createKid, type Kid } from "@/lib/mock/kids";
 import KidCard from "@/components/kid-card";
+import AddKidModal from "@/components/add-kid-modal";
 
 const normalizeText = (text: string): string =>
   text.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 
+const generateUniqueId = (slug: string, existingIds: Set<string>): string => {
+  if (!existingIds.has(slug)) return slug;
+  let suffix = 2;
+  while (existingIds.has(`${slug}-${suffix}`)) suffix++;
+  return `${slug}-${suffix}`;
+};
+
 export default function KidsPage() {
+  const [kidsList, setKidsList] = useState<Kid[]>(initialKids);
   const [query, setQuery] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const existingIds = useMemo(
+    () => new Set(kidsList.map((k) => k.id)),
+    [kidsList],
+  );
 
   const filtered = useMemo(() => {
     const q = normalizeText(query.trim());
-    if (q === "") return kids;
-    return kids.filter((kid) => normalizeText(kid.name).includes(q));
-  }, [query]);
+    if (q === "") return kidsList;
+    return kidsList.filter((kid) => normalizeText(kid.name).includes(q));
+  }, [query, kidsList]);
 
-  const handleInertClick = (event: MouseEvent<HTMLAnchorElement>) => {
+  const handleAddClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    setModalOpen(true);
+  };
+
+  const handleSave = (data: {
+    name: string;
+    birthDate: string;
+    room: string;
+    allergy?: string;
+    medicalNotes?: string;
+  }) => {
+    const kid = createKid(data);
+    kid.id = generateUniqueId(kid.id, existingIds);
+    setKidsList((prev) => [...prev, kid]);
+    setModalOpen(false);
   };
 
   return (
@@ -32,9 +60,9 @@ export default function KidsPage() {
             Niños
           </h1>
         </div>
-        <Link
-          href="#"
-          onClick={handleInertClick}
+        <button
+          type="button"
+          onClick={handleAddClick}
           className="flex items-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] px-[18px] py-[11px] text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,0.7)]"
         >
           <svg
@@ -51,7 +79,7 @@ export default function KidsPage() {
             <path d="M12 5v14M5 12h14" />
           </svg>
           Agregar niño
-        </Link>
+        </button>
       </div>
 
       <div className="mb-[22px] flex items-center gap-[11px] rounded-[14px] border border-[#ECE0D0] bg-[#FFFDF9] px-4 py-3">
@@ -82,7 +110,7 @@ export default function KidsPage() {
         <span className="text-[12.5px] font-extrabold tracking-[0.8px] text-[#3F362E]">
           SALA SOLES
         </span>
-        <span className="text-[13px] text-[#A89A8B]">{kids.length} niños</span>
+        <span className="text-[13px] text-[#A89A8B]">{kidsList.length} niños</span>
         <span className="flex-1 h-px bg-[#E7DAC8]" />
       </div>
 
@@ -91,6 +119,12 @@ export default function KidsPage() {
           <KidCard key={kid.id} kid={kid} />
         ))}
       </div>
+
+      <AddKidModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        onSave={handleSave}
+      />
     </div>
   );
 }
