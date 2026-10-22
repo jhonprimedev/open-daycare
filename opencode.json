@@ -7,5 +7,11 @@
       "enabled": true,
       "environment": {}
     }
+  },
+  "command": {
+    "spec": {
+      "description": "Crea especificaciones de pantallas y funcionalidades",
+      "template": "Carga y sigue la skill spec en .agents/skills/spec/SKILL.md.\n\nFeature: $ARGUMENTS"
+    }
   }
 }
