@@ -1,10 +1,11 @@
-"use client";
-
-import { use, type MouseEvent } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { kids } from "@/lib/mock/kids";
 import type { Parent, ParentStatus } from "@/lib/mock/kids";
+
+export function generateStaticParams() {
+  return kids.map((kid) => ({ id: kid.id }));
+}
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -50,14 +51,10 @@ function InfoRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-export default function KidProfilePage({ params }: Props) {
-  const { id } = use(params);
+export default async function KidProfilePage({ params }: Props) {
+  const { id } = await params;
   const kid = kids.find((k) => k.id === id);
   if (!kid) return notFound();
-
-  const handleInertClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-  };
 
   return (
     <div className="mx-auto w-full max-w-[820px] px-10 py-[34px] pb-20">
@@ -98,13 +95,12 @@ export default function KidProfilePage({ params }: Props) {
                 {kid.ageYears} años · Sala {kid.room}
               </p>
             </div>
-            <a
+            <Link
               href="#"
-              onClick={handleInertClick}
               className="rounded-xl border-[1.5px] border-[#ECE0D0] bg-[#FFFDF9] px-4 py-[9px] text-[14px] font-bold text-[#6E6359]"
             >
               Editar
-            </a>
+            </Link>
           </div>
 
           {kid.allergy && (
@@ -144,9 +140,8 @@ export default function KidProfilePage({ params }: Props) {
         </div>
 
         <div className="flex w-full flex-col gap-[14px] md:w-[300px] md:flex-none">
-          <a
+          <Link
             href="#"
-            onClick={handleInertClick}
             className="flex w-full items-center justify-center gap-[9px] rounded-[14px] bg-[#3F362E] p-[13px] text-[15px] font-extrabold text-white"
           >
             <svg
@@ -164,7 +159,7 @@ export default function KidProfilePage({ params }: Props) {
               <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
             </svg>
             Resumen del día
-          </a>
+          </Link>
 
           <div className="rounded-2xl border border-[#ECE0D0] bg-[#FFFDF9] p-[16px_18px]">
             <div className="mb-[14px] text-[12.5px] font-extrabold tracking-[0.8px] text-[#8A7C6D]">
@@ -174,11 +169,7 @@ export default function KidProfilePage({ params }: Props) {
               {kid.parents.map((parent) => (
                 <ParentRow key={parent.name} parent={parent} />
               ))}
-              <a
-                href="#"
-                onClick={handleInertClick}
-                className="flex items-center gap-3 pt-2"
-              >
+              <Link href="#" className="flex items-center gap-3 pt-2">
                 <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border-[1.5px] border-dashed border-[#D8CBBA] text-[#B0A290]">
                   <svg
                     width="18"
@@ -197,7 +188,7 @@ export default function KidProfilePage({ params }: Props) {
                 <span className="text-[14.5px] font-extrabold text-[#C5503A]">
                   Vincular otro padre
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
