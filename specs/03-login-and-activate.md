@@ -1,6 +1,6 @@
 # SPEC 03 — Login y activar cuenta
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-10-22
 > **Objetivo:** Implementar los mockups `login.dc.html` y `activar-cuenta.dc.html` como las rutas `/login` y `/activate` con formularios inertes, estilo idéntico y redirección a `/` tras el envío.
@@ -39,17 +39,17 @@ Esta spec no introduce nuevas estructuras de datos.
 
 ## Criterios de aceptación
 
-- [ ] `/login` muestra panel izquierdo con gradiente naranja, logo, título, subtítulo y texto de sala.
-- [ ] `/login` muestra panel derecho con email, contraseña, links y botón «Iniciar sesión».
-- [ ] `/login` NO muestra los botones «Personal»/«Familia».
-- [ ] `/activate` muestra icono, título, subtítulo, tarjeta de invitación, campos y botón.
-- [ ] Link «Activá tu cuenta» en `/login` navega a `/activate`.
-- [ ] Link «Iniciar sesión» en `/activate` navega a `/login`.
-- [ ] Formularios inertes, sin validación.
-- [ ] Comparación visual contra mockups coincide a 1280px.
-- [ ] Responsive a 375px.
-- [ ] Fredoka y Nunito vía `next/font`.
-- [ ] `npm run lint` y `npm run build` pasan.
+- [x] `/login` muestra panel izquierdo con gradiente naranja, logo, título, subtítulo y texto de sala.
+- [x] `/login` muestra panel derecho con email, contraseña, links y botón «Iniciar sesión».
+- [x] `/login` NO muestra los botones «Personal»/«Familia».
+- [x] `/activate` muestra icono, título, subtítulo, tarjeta de invitación, campos y botón.
+- [x] Link «Activá tu cuenta» en `/login` navega a `/activate`.
+- [x] Link «Iniciar sesión» en `/activate` navega a `/login`.
+- [x] Formularios inertes, sin validación.
+- [x] Comparación visual contra mockups coincide a 1280px.
+- [x] Responsive a 375px.
+- [x] Fredoka y Nunito vía `next/font`.
+- [x] `npm run lint` y `npm run build` pasan.
 
 ## Decisiones
 
