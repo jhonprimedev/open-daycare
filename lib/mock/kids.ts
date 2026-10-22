@@ -79,6 +79,36 @@ export const listBadge = (kid: Kid): ListBadge => {
   return { kind: "none" };
 };
 
+export const rooms: string[] = ["Soles", "Luna", "Estrellas"];
+
+export const createKid = (data: {
+  name: string;
+  birthDate: string;
+  room: string;
+  allergy?: string;
+  medicalNotes?: string;
+}): Kid => {
+  const initial = data.name.trim().charAt(0).toUpperCase();
+  const id = data.name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  return {
+    id,
+    name: data.name,
+    ageYears: 0,
+    room: data.room,
+    birthDate: data.birthDate,
+    enrolledOn: "oct 2026",
+    avatar: makeAvatar(initial),
+    allergy: data.allergy ? { tag: data.allergy.toUpperCase(), note: data.medicalNotes ?? "" } : undefined,
+    parents: [],
+  };
+};
+
 export const kids: Kid[] = [
   {
     id: "mateo",
