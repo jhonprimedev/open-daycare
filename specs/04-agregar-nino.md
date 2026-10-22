@@ -78,16 +78,16 @@ Convenciones:
 
 ## Criterios de aceptación
 
-- [ ] Botón «Agregar niño» en `/kids` abre el modal.
-- [ ] Modal muestra header con «Cancelar», título «Agregar niño» y «Guardar».
-- [ ] Modal muestra campos: nombre completo, fecha de nacimiento, sala, alergias, notas médicas.
-- [ ] Campos nombre, fecha y sala son obligatorios; botón «Guardar» deshabilitado si faltan.
-- [ ] Dropdown de sala muestra «Soles», «Luna», «Estrellas» y permite seleccionar.
-- [ ] Al guardar con datos válidos: niño se agrega a la lista y modal se cierra.
-- [ ] Al cancelar (botón o clic fuera): modal se cierra sin cambios.
-- [ ] Estilos del modal coinciden con el mockup (card centrada, bordes redondeados, shadow).
-- [ ] Responsive a 375px (modal adaptado a pantalla móvil).
-- [ ] `npm run lint` no reporta problemas fuera de `references/` y `npm run build` pasa.
+- [x] Botón «Agregar niño» en `/kids` abre el modal.
+- [x] Modal muestra header con «Cancelar», título «Agregar niño» y «Guardar».
+- [x] Modal muestra campos: nombre completo, fecha de nacimiento, sala, alergias, notas médicas.
+- [x] Campos nombre, fecha y sala son obligatorios; botón «Guardar» deshabilitado si faltan.
+- [x] Dropdown de sala muestra «Soles», «Luna», «Estrellas» y permite seleccionar.
+- [x] Al guardar con datos válidos: niño se agrega a la lista y modal se cierra.
+- [x] Al cancelar (botón o clic fuera): modal se cierra sin cambios.
+- [x] Estilos del modal coinciden con el mockup (card centrada, bordes redondeados, shadow).
+- [x] Responsive a 375px (modal adaptado a pantalla móvil).
+- [x] `npm run lint` no reporta problemas fuera de `references/` y `npm run build` pasa.
 
 ## Decisiones
 

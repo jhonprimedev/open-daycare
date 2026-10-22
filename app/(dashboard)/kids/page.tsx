@@ -19,6 +19,7 @@ export default function KidsPage() {
   const [kidsList, setKidsList] = useState<Kid[]>(initialKids);
   const [query, setQuery] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalKey, setModalKey] = useState(0);
 
   const existingIds = useMemo(
     () => new Set(kidsList.map((k) => k.id)),
@@ -33,6 +34,7 @@ export default function KidsPage() {
 
   const handleAddClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    setModalKey((k) => k + 1);
     setModalOpen(true);
   };
 
@@ -63,7 +65,7 @@ export default function KidsPage() {
         <button
           type="button"
           onClick={handleAddClick}
-          className="flex items-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] px-[18px] py-[11px] text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,0.7)]"
+          className="cursor-pointer flex items-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] px-[18px] py-[11px] text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,0.7)]"
         >
           <svg
             width="17"
@@ -121,6 +123,7 @@ export default function KidsPage() {
       </div>
 
       <AddKidModal
+        key={modalKey}
         open={modalOpen}
         onClose={() => setModalOpen(false)}
         onSave={handleSave}

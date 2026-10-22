@@ -25,17 +25,6 @@ export default function AddKidModal({ open, onClose, onSave }: AddKidModalProps)
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!open) {
-      setName("");
-      setBirthDate("");
-      setSelectedRoom("");
-      setAllergy("");
-      setMedicalNotes("");
-      setRoomDropdownOpen(false);
-    }
-  }, [open]);
-
-  useEffect(() => {
     if (!roomDropdownOpen) return;
     const handleClick = (e: globalThis.MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -82,7 +71,7 @@ export default function AddKidModal({ open, onClose, onSave }: AddKidModalProps)
           <button
             type="button"
             onClick={onClose}
-            className="text-[15px] font-bold text-[#94887B]"
+            className="cursor-pointer text-[15px] font-bold text-[#94887B]"
           >
             Cancelar
           </button>
@@ -93,7 +82,7 @@ export default function AddKidModal({ open, onClose, onSave }: AddKidModalProps)
             type="button"
             onClick={handleSave}
             disabled={!isValid}
-            className={`text-[15px] font-extrabold ${
+            className={`cursor-pointer text-[15px] font-extrabold ${
               isValid ? "text-[#D9583C]" : "cursor-not-allowed text-[#CBB89F]"
             }`}
           >
@@ -124,7 +113,7 @@ export default function AddKidModal({ open, onClose, onSave }: AddKidModalProps)
                 FECHA DE NACIMIENTO
               </label>
               <input
-                type="text"
+                type="date"
                 placeholder="dd/mm/aaaa"
                 value={birthDate}
                 onChange={(e) => setBirthDate(e.target.value)}
